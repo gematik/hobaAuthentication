@@ -11,15 +11,11 @@ class HobaAuthenticationProvider internal constructor(
     configuration: Configuration
 ) : AuthenticationProvider(configuration) {
 
-    private val headerName: String = configuration.headerName
-    private val authScheme = configuration.authScheme
     private val validateFunction = configuration.validateFunction
     private val challengeFunction = configuration.challengeFunction
     data class HobaCookie(val eoa: String)
 
     class Configuration internal constructor(name: String?) : Config(name) {
-            var authScheme: String = "hoba"
-            var headerName: String = "WWW-Authentication"
             internal var challengeFunction: suspend (ApplicationCall) -> Unit = { call ->
                 val challenge = Random.nextBytes(32)
                 val authenticationChallenge = HobaAuthenticationChallenge(challenge = challenge)
