@@ -1,3 +1,5 @@
+package main.de.gematik.hoba
+
 import de.gematik.hoba.server.HobaServer
 
 fun argParser(args: Array<String>): Map<String, List<String>>

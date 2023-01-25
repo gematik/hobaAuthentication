@@ -14,7 +14,7 @@ repositories {
 group = "de.gematik.hoba"
 version = "1.0.0"
 application {
-    mainClass.set("de.gematik.hoba.MainApplication")
+    mainClass.set("MainApplicationKt")
 
     val isDevelopment: Boolean = project.ext.has("development")
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
@@ -33,4 +33,14 @@ dependencies {
     implementation("io.ktor:ktor-client-cio:$ktor_version")
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
+}
+
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "MainApplicationKt"
+    }
+    configurations["compileClasspath"].forEach { file: File ->
+        from(zipTree(file.absoluteFile))
+    }
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }

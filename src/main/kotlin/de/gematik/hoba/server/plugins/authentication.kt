@@ -9,8 +9,7 @@ import io.ktor.server.auth.*
 fun Application.configureAuthentication() {
 
     install(Sessions) {
-        cookie<HobaAuthenticationProvider.HobaCookie>("hoba_session") {
-            SessionStorageMemory()
+        cookie<HobaAuthenticationProvider.HobaCookie>("hoba_session",SessionStorageMemory()) {
         }
     }
     install(Authentication){
