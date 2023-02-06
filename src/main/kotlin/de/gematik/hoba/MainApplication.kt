@@ -21,6 +21,9 @@ fun argParser(args: Array<String>): Map<String, List<String>>
 
 fun main(arguments : Array<String>) {
     val args  = argParser(arguments)
-    val server = HobaServer(host=args.get("host")?.first()?.toString()?:"localhost", port=args.get("port")?.first()?.toInt()?:5000)
+    val server = HobaServer(host=args.get("host")?.first()?.toString()?:"0.0.0.0", port=args.get("port")?.first()?.toInt()?:5000)
     server.run()
+    while(true) {
+        Thread.sleep(1000)
+    }
 }
