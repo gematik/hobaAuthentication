@@ -44,7 +44,7 @@ class HobaAuthenticationProvider internal constructor(
         }
 
     override suspend fun onAuthenticate(context: AuthenticationContext) {
-        val authHeader = context.call.request.header("WWW-Authenticate")
+        val authHeader = context.call.request.header("Authorization")
         var principal: Configuration.HobaPrincipal? = null
         try{
                 principal = authHeader?.let{validateFunction(context.call,it)
