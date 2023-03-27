@@ -13,7 +13,7 @@ repositories {
     maven(url="https://repo.labor.gematik.de/repository/maven-public/")
 }
 group = "de.gematik.hoba"
-version = "1.2"
+version = "1.0"
 application {
     mainClass.set("MainApplicationKt")
 
