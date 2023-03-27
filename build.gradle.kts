@@ -12,7 +12,7 @@ repositories {
     mavenCentral()
 }
 group = "de.gematik.hoba"
-version = "1.0.0"
+version = "1.0"
 application {
     mainClass.set("MainApplicationKt")
 
@@ -21,7 +21,7 @@ application {
 }
 
 dependencies {
-    implementation("de.gematik.kether:kether:1.3-SNAPSHOT")
+    implementation("de.gematik.kether:kether:1.4.2")
     implementation("io.ktor:ktor-server-core-jvm:$ktor_version")
     implementation("io.ktor:ktor-server-auth-jvm:$ktor_version")
     implementation("io.ktor:ktor-server-sessions-jvm:$ktor_version")
