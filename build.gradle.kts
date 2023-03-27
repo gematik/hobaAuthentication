@@ -1,3 +1,4 @@
+
 val ktor_version="2.2.4"
 val kotlin_version: String by project
 val logback_version: String by project
