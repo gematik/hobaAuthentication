@@ -1,4 +1,3 @@
-
 val ktor_version="2.2.4"
 val kotlin_version: String by project
 val logback_version: String by project
@@ -14,7 +13,7 @@ repositories {
     maven(url="https://repo.labor.gematik.de/repository/maven-public/")
 }
 group = "de.gematik.hoba"
-version = "1.1"
+version = "1.2"
 application {
     mainClass.set("MainApplicationKt")
 
