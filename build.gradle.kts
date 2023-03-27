@@ -21,7 +21,6 @@ application {
 }
 
 dependencies {
-    implementation("de.gematik.hoba:hoba_authentication:1.0")
     implementation("de.gematik.kether:kether:1.4.2")
     implementation("io.ktor:ktor-server-core-jvm:$ktor_version")
     implementation("io.ktor:ktor-server-auth-jvm:$ktor_version")
