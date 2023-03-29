@@ -16,7 +16,6 @@ class HobaClient(val host: String="http://localhost", val port: Int =5000, val p
         val client = HttpClient(CIO) {
             install(DefaultRequest)
             install(HttpCookies)
-
         }
         init {
         client.plugin(HttpSend).intercept { request ->
