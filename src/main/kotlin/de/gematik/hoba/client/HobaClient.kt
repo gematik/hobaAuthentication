@@ -15,7 +15,7 @@ import kotlin.random.Random
 class HobaClient(val host: String="http://localhost", val port: Int =5000, val privateKey: EcdsaPrivateKey) {
         val client = HttpClient(CIO) {
             install(DefaultRequest)
-           // install(HttpCookies)
+            install(HttpCookies)
 
         }
         init {
@@ -28,8 +28,8 @@ class HobaClient(val host: String="http://localhost", val port: Int =5000, val p
                     originalCall.response.headers.get("WWW-Authenticate").toString()
                 )
                 var credential = HobaAuthorizationCredential(hobaChallenge.challenge, Random.nextBytes(32))
-                //credential.sign(privateKey, "")
-                request.headers.set("WWW-Authenticate", credential.toString())
+                credential.sign(privateKey, "")
+                request.headers.set("Authorization", credential.toString())
                 execute(request)
             } else {
                 originalCall

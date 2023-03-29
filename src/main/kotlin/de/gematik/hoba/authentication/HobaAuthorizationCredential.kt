@@ -38,8 +38,8 @@ class HobaAuthorizationCredential(val challenge: ByteArray, val nonce: ByteArray
             require(parameterMap.containsKey("result")) { "malformed credential - parameter result missing" }
             val resultMap = parameterMap.get("result")!!.trim('"').split('.')
             require(resultMap.size == 4) { "malformed credential - invalid number of result parts: expected 4 is ${resultMap.size}" }
-            return HobaAuthorizationCredential(resultMap[1], Base64.getUrlDecoder().decode(resultMap[2])).apply {
-                kid = AbiAddress(resultMap[0])
+            return HobaAuthorizationCredential(Base64.getUrlDecoder().decode(resultMap[1]), Base64.getUrlDecoder().decode(resultMap[2])).apply {
+                kid = AbiAddress(Base64.getUrlDecoder().decode(resultMap[0]))
                 signature = EcdsaSignature(Base64.getUrlDecoder().decode(resultMap[3]), curve)
             }
         }
@@ -59,7 +59,7 @@ class HobaAuthorizationCredential(val challenge: ByteArray, val nonce: ByteArray
     }
 
     override fun toString(): String {
-        return """HOBA result="$kid.${Base64.getUrlEncoder().encodeToString(challenge)}.${Base64.getUrlEncoder().encodeToString(nonce)}.${
+        return """HOBA result="${Base64.getUrlEncoder().encodeToString(kid.toByteArray())}.${Base64.getUrlEncoder().encodeToString(challenge)}.${Base64.getUrlEncoder().encodeToString(nonce)}.${
             Base64.getUrlEncoder().encodeToString(signature.getEncoded())
         }""""
     }
