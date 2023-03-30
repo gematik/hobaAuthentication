@@ -6,7 +6,6 @@ plugins {
     kotlin("jvm") version "1.8.0"
     id("application")
     id("maven-publish")
-    id("io.ktor.plugin") version "2.2.4"
     id("org.jetbrains.kotlin.plugin.serialization") version "1.8.0"
 }
 repositories {
@@ -14,9 +13,9 @@ repositories {
     maven(url="https://repo.labor.gematik.de/repository/maven-public/")
 }
 group = "de.gematik.hoba"
-version = "1.2.1"
+version = "1.2.2"
 application {
-    mainClass.set("MainApplicationKt")
+    mainClass.set("de.gematik.hoba.MainApplicationKt")
 
     val isDevelopment: Boolean = project.ext.has("development")
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
@@ -25,6 +24,14 @@ application {
 java {
     withJavadocJar()
     withSourcesJar()
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
+    }
+    kotlin {
+        jvmToolchain {
+            languageVersion.set(JavaLanguageVersion.of(11))
+        }
+    }
 }
 
 dependencies {

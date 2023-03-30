@@ -38,7 +38,7 @@ class HobaAuthenticationChallenge(val maxAge:Int=10, val realm:String?=null, val
      * @return HOBA string representation
      */
     override fun toString(): String {
-        val re = if(realm!=null)""" realm="$realm""" else ""
+        val re = if(realm!=null)""" realm="$realm"""" else ""
         return """HOBA challenge="${Base64.getUrlEncoder().encodeToString(challenge)}" max-age=$maxAge${re}"""
     }
 }

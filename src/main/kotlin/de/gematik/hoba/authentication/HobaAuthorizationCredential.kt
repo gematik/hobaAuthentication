@@ -64,11 +64,12 @@ class HobaAuthorizationCredential(val challenge: ByteArray, val nonce: ByteArray
         }""""
     }
 
-    private fun getHobaTbs(origin: String, realm: String? = null): String {
-        val re = if (realm != null) """realm="$realm""" else ""
+    fun getHobaTbs(origin: String, realm: String? = null): String {
+        val re = realm ?: ""
         val ch = Base64.getUrlEncoder().encodeToString(challenge)
         val nc = Base64.getUrlEncoder().encodeToString(nonce)
-        return "${nc.length}:${nc}${alg.toString().length}:${alg}${origin.length}:$origin${re.length}:$re${kid.toString().length}:${kid}${ch.length}:$ch"
+        val ki = Base64.getUrlEncoder().encodeToString(kid.toByteArray())
+        return "${nc.length}:${nc}${alg.alg.toString().length}:${alg.alg}${origin.length}:$origin${re.length}:$re${ki.length}:${ki}${ch.length}:$ch"
     }
 
 }
