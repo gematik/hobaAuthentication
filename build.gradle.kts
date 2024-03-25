@@ -10,7 +10,7 @@ plugins {
 }
 repositories {
     mavenCentral()
-    maven(url="https://repo.labor.gematik.de/repository/maven-public/")
+    mavenLocal()
 }
 group = "de.gematik.hoba"
 version = "1.2.2"
